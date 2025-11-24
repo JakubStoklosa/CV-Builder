@@ -3,16 +3,26 @@
     <header class="cv-header">
         <h1 class="cv-name">{{ data.name or 'Your Name' }}</h1>
         <div class="cv-contact">
-            {% if data.email %}<span>✉️ {{ data.email }}</span>{% endif %}
-            {% if data.phone %}<span>📞 {{ data.phone }}</span>{% endif %}
-            {% if data.location %}<span>📍 {{ data.location }}</span>{% endif %}
+            {% if data.email %}<span>{{ data.email }}</span>{% endif %}
+            {% if data.phone %}<span>{{ data.phone }}</span>{% endif %}
+            {% if data.location %}<span>{{ data.location }}</span>{% endif %}
         </div>
         <div class="cv-links">
-            {% if data.linkedin %}<span>🔗 {{ data.linkedin.replace('https://', '').replace('http://', '') }}</span>{% endif %}
-            {% if data.github %}<span>💻 {{ data.github.replace('https://', '').replace('http://', '') }}</span>{% endif %}
-            {% if data.portfolio %}<span>🌐 {{ data.portfolio.replace('https://', '').replace('http://', '') }}</span>{% endif %}
+            {% if data.linkedin %}<span>{{ data.linkedin.replace('https://', '').replace('http://', '') }}</span>{% endif %}
+            {% if data.github %}<span>{{ data.github.replace('https://', '').replace('http://', '') }}</span>{% endif %}
+            {% if data.portfolio %}<span>{{ data.portfolio.replace('https://', '').replace('http://', '') }}</span>{% endif %}
         </div>
     </header>
+
+    <!-- Profile Section -->
+    {% if data.profile %}
+    <section class="cv-section">
+        <h2 class="cv-section-title">Profile</h2>
+        <div class="cv-section-content">
+            <p class="profile-text">{{ data.profile }}</p>
+        </div>
+    </section>
+    {% endif %}
 
     <!-- Education Section -->
     {% if data.degree or data.university %}

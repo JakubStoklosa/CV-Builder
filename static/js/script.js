@@ -32,6 +32,9 @@ function loadExampleData() {
     document.getElementById('github').value = data.github || '';
     document.getElementById('portfolio').value = data.portfolio || '';
     
+    // Fill profile
+    document.getElementById('profile').value = data.personal_statement || '';
+    
     // Fill education
     document.getElementById('degree').value = data.degree || '';
     document.getElementById('university').value = data.university || '';
@@ -139,6 +142,7 @@ function collectFormData() {
         linkedin: document.getElementById('linkedin').value,
         github: document.getElementById('github').value,
         portfolio: document.getElementById('portfolio').value,
+        profile: document.getElementById('profile').value,
         degree: document.getElementById('degree').value,
         university: document.getElementById('university').value,
         graduation_year: document.getElementById('graduation_year').value,
@@ -339,6 +343,9 @@ function loadDataIntoForm(data) {
     document.getElementById('linkedin').value = data.linkedin || '';
     document.getElementById('github').value = data.github || '';
     document.getElementById('portfolio').value = data.portfolio || '';
+    
+    // Fill profile
+    document.getElementById('profile').value = data.profile || '';
     
     // Fill education
     document.getElementById('degree').value = data.degree || '';
