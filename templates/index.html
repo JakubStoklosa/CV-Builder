@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UK CS Graduate CV Builder</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎓 UK Computer Science Graduate CV Builder</h1>
+            <p>Create a professional, ATS-friendly CV tailored for UK job applications</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Form Section -->
+            <div class="form-section">
+                <div class="form-header">
+                    <h2>Enter Your Details</h2>
+                    <button id="load-example" class="btn-secondary">Load Example Data</button>
+                </div>
+
+                <form id="cv-form">
+                    <!-- Personal Information -->
+                    <div class="form-group">
+                        <h3>Personal Information</h3>
+                        <input type="text" id="name" placeholder="Full Name" required>
+                        <input type="email" id="email" placeholder="Email Address" required>
+                        <input type="tel" id="phone" placeholder="Phone Number">
+                        <input type="text" id="location" placeholder="Location (e.g., London, UK)">
+                    </div>
+
+                    <!-- Links -->
+                    <div class="form-group">
+                        <h3>Professional Links</h3>
+                        <input type="url" id="linkedin" placeholder="LinkedIn Profile URL">
+                        <input type="url" id="github" placeholder="GitHub Profile URL">
+                        <input type="url" id="portfolio" placeholder="Portfolio Website URL">
+                    </div>
+
+                    <!-- Education -->
+                    <div class="form-group">
+                        <h3>Education</h3>
+                        <input type="text" id="degree" placeholder="Degree (e.g., BSc Computer Science)" required>
+                        <input type="text" id="university" placeholder="University Name" required>
+                        <input type="text" id="graduation_year" placeholder="Graduation Year">
+                        <input type="text" id="grade" placeholder="Grade/Classification (optional)">
+                    </div>
+
+                    <!-- Skills -->
+                    <div class="form-group">
+                        <h3>Technical Skills</h3>
+                        <textarea id="skills" placeholder="Enter skills separated by commas (e.g., Python, JavaScript, React, Node.js)"></textarea>
+                        <small>Separate skills with commas</small>
+                    </div>
+
+                    <!-- Projects -->
+                    <div class="form-group">
+                        <h3>Projects</h3>
+                        <div id="projects-container">
+                            <div class="project-item">
+                                <input type="text" class="project-title" placeholder="Project Title">
+                                <textarea class="project-description" placeholder="Project Description"></textarea>
+                                <input type="text" class="project-technologies" placeholder="Technologies Used">
+                                <button type="button" class="remove-project" onclick="removeProject(this)">Remove</button>
+                            </div>
+                        </div>
+                        <button type="button" id="add-project" class="btn-secondary">Add Another Project</button>
+                    </div>
+
+                    <!-- Work Experience -->
+                    <div class="form-group">
+                        <h3>Work Experience (Optional)</h3>
+                        <div id="experience-container">
+                            <div class="experience-item">
+                                <input type="text" class="experience-title" placeholder="Job Title">
+                                <input type="text" class="experience-company" placeholder="Company Name">
+                                <input type="text" class="experience-duration" placeholder="Duration (e.g., Jun 2023 - Aug 2023)">
+                                <textarea class="experience-description" placeholder="Job Description"></textarea>
+                                <button type="button" class="remove-experience" onclick="removeExperience(this)">Remove</button>
+                            </div>
+                        </div>
+                        <button type="button" id="add-experience" class="btn-secondary">Add Another Position</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Preview Section -->
+            <div class="preview-section">
+                <div class="preview-header">
+                    <h2>CV Preview</h2>
+                    <button id="download-pdf" class="btn-primary">📄 Download PDF</button>
+                </div>
+                <div id="cv-preview" class="cv-preview">
+                    <p class="preview-placeholder">Fill in the form to see your CV preview</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script id="example-data" type="application/json">
+        {{ example_data | tojson }}
+    </script>
+    <script>
+        // Parse example data from JSON script tag
+        window.EXAMPLE_DATA = JSON.parse(document.getElementById('example-data').textContent);
+    </script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

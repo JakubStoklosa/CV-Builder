@@ -1,0 +1,92 @@
+<div class="cv-container" id="cv-content">
+    <!-- Header Section -->
+    <header class="cv-header">
+        <h1 class="cv-name">{{ data.name or 'Your Name' }}</h1>
+        <div class="cv-contact">
+            {% if data.email %}<span>✉️ {{ data.email }}</span>{% endif %}
+            {% if data.phone %}<span>📞 {{ data.phone }}</span>{% endif %}
+            {% if data.location %}<span>📍 {{ data.location }}</span>{% endif %}
+        </div>
+        <div class="cv-links">
+            {% if data.linkedin %}<span>🔗 {{ data.linkedin.replace('https://', '').replace('http://', '') }}</span>{% endif %}
+            {% if data.github %}<span>💻 {{ data.github.replace('https://', '').replace('http://', '') }}</span>{% endif %}
+            {% if data.portfolio %}<span>🌐 {{ data.portfolio.replace('https://', '').replace('http://', '') }}</span>{% endif %}
+        </div>
+    </header>
+
+    <!-- Education Section -->
+    {% if data.degree or data.university %}
+    <section class="cv-section">
+        <h2 class="cv-section-title">Education</h2>
+        <div class="cv-section-content">
+            <div class="education-item">
+                <div class="education-header">
+                    <strong>{{ data.degree or 'Degree' }}</strong>
+                    {% if data.graduation_year %}<span class="year">{{ data.graduation_year }}</span>{% endif %}
+                </div>
+                <div class="institution">{{ data.university or 'University' }}</div>
+                {% if data.grade %}<div class="grade">{{ data.grade }}</div>{% endif %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- Technical Skills Section -->
+    {% if data.skills %}
+    <section class="cv-section">
+        <h2 class="cv-section-title">Technical Skills</h2>
+        <div class="cv-section-content">
+            <div class="skills-list">
+                {% for skill in data.skills %}
+                <span class="skill-tag">{{ skill.strip() }}</span>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- Projects Section -->
+    {% if data.projects %}
+    <section class="cv-section">
+        <h2 class="cv-section-title">Projects</h2>
+        <div class="cv-section-content">
+            {% for project in data.projects %}
+            {% if project.title %}
+            <div class="project-item">
+                <h3 class="project-title">{{ project.title }}</h3>
+                {% if project.description %}
+                <p class="project-description">{{ project.description }}</p>
+                {% endif %}
+                {% if project.technologies %}
+                <p class="project-technologies"><strong>Technologies:</strong> {{ project.technologies }}</p>
+                {% endif %}
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- Work Experience Section -->
+    {% if data.work_experience %}
+    <section class="cv-section">
+        <h2 class="cv-section-title">Work Experience</h2>
+        <div class="cv-section-content">
+            {% for job in data.work_experience %}
+            {% if job.title or job.company %}
+            <div class="experience-item">
+                <div class="experience-header">
+                    <strong>{{ job.title or 'Position' }}</strong>
+                    {% if job.duration %}<span class="duration">{{ job.duration }}</span>{% endif %}
+                </div>
+                <div class="company">{{ job.company or 'Company' }}</div>
+                {% if job.description %}
+                <p class="experience-description">{{ job.description }}</p>
+                {% endif %}
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </section>
+    {% endif %}
+</div>
